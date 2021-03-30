@@ -1,26 +1,9 @@
-import { useEffect, useState } from "react";
-import { api } from "../../services/api";
+import { useContext } from "react";
+import { TransactionsContext } from "../../TransactionsContext";
 import { Container } from "./styles";
 
-type TransactionProps = {
-  id: number;
-  title: string;
-  amount: number;
-  type: string;
-  category: string;
-  createdAt: string;
-};
-
 const TransactionsTable = () => {
-  const [transactions, setTransactions] = useState<TransactionProps[]>([]);
-
-  useEffect(() => {
-    api.get("/transactions").then((res) => {
-      console.log(res.data.transactions);
-
-      setTransactions(res.data.transactions);
-    });
-  }, []);
+  const transactions = useContext(TransactionsContext);
 
   return (
     <Container>
@@ -37,9 +20,6 @@ const TransactionsTable = () => {
         <tbody>
           {transactions &&
             transactions.map((transaction) => {
-              console.log(transaction);
-              console.log(transaction.createdAt);
-
               return (
                 <tr key={transaction.id}>
                   <td>{transaction.title}</td>
