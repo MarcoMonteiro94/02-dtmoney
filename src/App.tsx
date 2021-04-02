@@ -13,7 +13,6 @@ export function App() {
   const [isNewTransactionModalOpen, setIsNewTransactionModalOpen] = useState(
     false
   );
-  console.log("Teste");
 
   function handleOpenNewTransactionModal() {
     setIsNewTransactionModalOpen(true);
